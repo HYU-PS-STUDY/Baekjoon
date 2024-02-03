@@ -24,14 +24,14 @@ git push -u origin [깃허브 아이디]
 
 ```shell
 .
-├── week3-binary-search
+├── week03-binary-search
 │  ├── clean2001
 │  ├── leGit-y
 │  ├── wimmings
 │  └── wonkyDD
 │     ├── 문제번호1.cpp
 │     └── 문제번호2.cpp
-└── week4-greedy
+└── week04-greedy
    ├── clean2001
    ├── leGit-y
    ├── wimmings
