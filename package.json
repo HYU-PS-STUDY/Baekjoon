@@ -1,0 +1,15 @@
+{
+  "name": "baekjoon",
+  "description": "2024 HYU problem solving study",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HYU-PS-STUDY/Baekjoon"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^9.0.10"
+  }
+}
