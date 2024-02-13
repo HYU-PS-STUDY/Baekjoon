@@ -1,3 +1,6 @@
 # IDE / Editor
 .idea/
 .vscode/
+
+# husky
+node_modules/

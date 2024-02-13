@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+commit_msg_regex='^\[week-\d+-[a-zA-Z0-9-]+\] (\d+, )*\d+$'
+error_msg="Aborting commit. Your commit message must match the format [week-<week_number>-<topic>] <problem_number1>, <problem_number2>."
+commit_msg=$(cat "$1")
+
+if ! echo "$commit_msg" | grep -Eq "$commit_msg_regex"; then
+    echo "$error_msg" >&2
+    exit 1
+fi
