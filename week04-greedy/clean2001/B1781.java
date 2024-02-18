@@ -1,49 +1,71 @@
-import java.util.*;
+// B1781 컵라면
 import java.io.*;
+import java.util.*;
 
-class B1781 {
-    static int T, N;
-    static Node[] arr;
-    static class Node implements Comparable<Node>{
-        int a, b;
+class Main {
+    static int N;
+    static ArrayList<Node> list;
 
-        Node (int a, int b) {
-            this.a = a; this.b = b;
-        }
+    static class Node {
+        long deadline;
+        long cup; 
+        /* 
+         제가 스터디때 2^31 보다 작은 수이기에 long 써야한다고 잘못 설명하였는데,
+         int 써도 풀릴 것 같습니다! 혼란을 드려 죄송해요ㅠ
+         */
 
-        public int compareTo(Node n) {
-            return this.a - n.a;
+
+        Node(long deadline, long cup) {
+            this.deadline = deadline;
+            this.cup = cup;
         }
     }
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        T = Integer.parseInt(br.readLine());
-        for(int i=0; i<T; ++i) {
-            int ans = 1;
-            N = Integer.parseInt(br.readLine());
-            arr = new Node[N];
-            for(int j=0; j<N; ++j) {
-                StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(br.readLine());
+        list = new ArrayList<>();
 
-                int a = Integer.parseInt(st.nextToken());
-                int b = Integer.parseInt(st.nextToken());
-                arr[j] = new Node(a, b);
+        for(int i=0; i<N; ++i) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int d = Integer.parseInt(st.nextToken()), c = Integer.parseInt(st.nextToken());
+            list.add(new Node(d, c));
+        }
+
+        list.sort(new Comparator<Node>() {
+            @Override
+            public int compare(Node a, Node b) {
+                return (int)(a.deadline - b.deadline);
             }
+        }); // 데드라인에 대해서 오름차순 정렬
 
-            Arrays.sort(arr);
+        PriorityQueue<Node> pq = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node a, Node b) {
+                return (int)(a.cup - b.cup);
+            }
+        }); // 컵라면이 적은 일이 위로 가도록
 
-            int s = arr[0].b;
-            for(int j=1; j<N; ++j) {
-                if(arr[j].b < s) {
-                    s = arr[j].b;
-                    ++ans;
+        for(int i=0; i<N; ++i) {
+            long d = list.get(i).deadline;
+            long c = list.get(i).cup;
+            if(pq.size() < d) { // 일 할 수 있는 상황 -> 그냥 pq에 넣기
+                pq.add(new Node(d, c));
+            } else { // 뭘 빼야하는 상황
+                if(pq.peek().cup < c) {
+                    pq.remove();
+                    pq.add(new Node(d, c));
                 }
             }
-
-            System.out.println(ans);
         }
+
+        long ans = 0;
+        while(!pq.isEmpty()) {
+            ans += pq.poll().cup;
+        }
+
+        System.out.println(ans);
+
     }
 }
