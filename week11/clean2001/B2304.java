@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-// 2304. 창고 다격현
+// 2304. 창고 다각형
 class Main {
   static int N;
   static ArrayList<Node> list = new ArrayList<>();
