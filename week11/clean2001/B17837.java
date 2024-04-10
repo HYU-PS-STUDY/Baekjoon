@@ -48,6 +48,7 @@ class Main {
       }
     }
 
+    // 말들이 들어있는 리스트. 인덱스를 1번부터 하기 위해 null을 넣어줌
     list.add(null);
     for(int i=1; i<=K; ++i) {
       st = new StringTokenizer(br.readLine());
@@ -55,7 +56,7 @@ class Main {
       int c = Integer.parseInt(st.nextToken());
       int d = Integer.parseInt(st.nextToken());
 
-      list.add(new Node(i, d-1, r ,c));
+      list.add(new Node(i, d-1, r ,c)); // 리스트에 말을 저장
       map[r][c].add(list.get(i)); // 말을 체스판에 놓기
     }
 
