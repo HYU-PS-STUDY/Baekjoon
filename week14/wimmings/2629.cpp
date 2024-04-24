@@ -12,10 +12,6 @@ int w[32];
 
 int m;
 bool dp[32][40002];
-/* 
-    이게 어떻게 냅색문제일까?
-
- */
 
 int main() {
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
