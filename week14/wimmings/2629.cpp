@@ -11,7 +11,11 @@ int n;
 int w[32];
 
 int m;
-bool dp[32][16];
+bool dp[32][40002];
+/* 
+    이게 어떻게 냅색문제일까?
+
+ */
 
 int main() {
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -21,7 +25,7 @@ int main() {
     }
     dp[0][0] = 1;
     for (int i = 1; i <= n; ++i) {
-        for (int j = 0; j <= 15; ++j) {
+        for (int j = 0; j <= 40000; ++j) {
             if (!dp[i - 1][j]) continue;
             dp[i][j] = 1;
 
